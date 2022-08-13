@@ -68,6 +68,7 @@ def transform_g_sheet_array(array:List[List[Any]])->pd.DataFrame:
 def make_dataframe()->pd.DataFrame:
     root_path = Path(dirname(realpath(__file__)))
     csv_folder_path = root_path/'..'/'csvs'
+ 
 
     for root,dirs,files in os.walk(csv_folder_path):
         dfs = list()
@@ -112,7 +113,17 @@ total.name = 'Category'
 st.text("Total")
 st.dataframe(total)
 
-st.text("Over time")
+
+st.text("Total by time")
+total_by_time = pivot_df.T.sum().to_frame().rename({0:'Total by time'},axis=1)
+st.dataframe(total_by_time)
+
+fig,ax = plt.subplots(1)
+ax.bar(x=range(len(total_by_time)),height=total_by_time['Total by time'],tick_label=total_by_time.index.astype(str))
+ax.tick_params(axis='x',labelrotation=90)
+st.pyplot(fig)
+
+st.text("Categories by time")
 st.dataframe(pivot_df.T)
 
 category = st.selectbox('Category',CATEGORIES)
