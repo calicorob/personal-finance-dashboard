@@ -2,9 +2,11 @@
 This repository hosts the files and instructions needed to get my personal finance dashboard up and running on any system. 
 
 ## Premise
-I decided to start this personal finance dashboard project so I could track my expenses. Originally, I started tracking my expenses in Google Sheets but soon became annoyed having to manually build the graphs for looking at my expenses over the dimension(s) I wanted to, i.e. time.
+A couple months ago I decided to start tracking my expenses. Originally, I started tracking my expenses in Google Sheets but soon became annoyed having to manually build the graphs for analyzing my expenses over time or by category.
 
-I decided to use my data engineering skills to build a Google Sheets -> dashboard pipeline. With this, I would only have to:
+I wanted something that was easy; put my numbers in a spreadsheet and forget about it.
+
+So, I decided to use my data engineering skills and build a Google Sheets -> dashboard pipeline. With this, I would only have to:
 1. Put my expenses into a Google Sheet.
 2. Run the pipeline.
 3. Enjoy the breakdown of my expenses in a dashboard.
@@ -41,9 +43,10 @@ Instructions for getting Airflow running in Docker can be found [here](https://a
 
 The simplified instructions are:
 1. Create mounted folders required for Airflow. The paths for the mounted folders can be found in lines 62-67 of the docker compose. 
-2. Set the AIRFLOW_UID.
-3. Initialize database; docker-compose up airflow init.
-4. Run; docker-compose up
+2. Add service account credentials JSON to 'keys' folder as `service_key.json`. 
+3. Set the AIRFLOW_UID.
+4. Initialize database; docker-compose up airflow init.
+5. Run; docker-compose up
 
 ### Visualization
 Data visualization / dashboarding was done with streamlit. 
@@ -54,3 +57,6 @@ Installation instructions are as follows:
 2. Install required libraries found in the [requirements.txt](./streamlit/requirements.txt) file in the newly created environment.
 3. Run `python -m streamlit run main.py` in the [streamlit](./streamlit/) folder. 
 
+### Next steps
+* Expose dashboard online so I can access my finances anywhere. 
+* Improve finances visualizations.
