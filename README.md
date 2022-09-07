@@ -11,6 +11,8 @@ So, I decided to use my data engineering skills and build a Google Sheets -> das
 2. Run the pipeline.
 3. Enjoy the breakdown of my expenses in a dashboard.
 
+![sheet to dashboard viz](./images/sheet_to_dashboard.gif)
+
 ## Setup
 This project has 3 steps:
 1. Expenses input in Google Sheets.
