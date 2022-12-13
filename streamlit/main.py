@@ -110,21 +110,28 @@ pivot_df = process_dataframe(df=df)
 total = pivot_df.sum()
 total.name = 'Category'
 
+
+total = total.to_frame()
+
+
+
 st.text("Total")
 fig,ax = plt.subplots(1)
-ax.bar(x = range(len(total)),height = total.values,tick_label = total.index.astype(str))
+bar_1 = ax.bar(x = range(len(total)),height = total.Category,tick_label = total.index.astype(str))
 ax.tick_params(axis='x',labelrotation=90)
+ax.bar_label(bar_1,label_type='edge')
 st.pyplot(fig)
-st.dataframe(total)
+#st.dataframe(total) # removed since we have a graph now
 
 
 st.text("Total by time")
 total_by_time = pivot_df.T.sum().to_frame().rename({0:'Total by time'},axis=1)
-st.dataframe(total_by_time)
+#st.dataframe(total_by_time) removed since we have a graph now
 
 fig,ax = plt.subplots(1)
-ax.bar(x=range(len(total_by_time)),height=total_by_time['Total by time'],tick_label=total_by_time.index.astype(str))
+bar_1 = ax.bar(x=range(len(total_by_time)),height=total_by_time['Total by time'],tick_label=total_by_time.index.astype(str))
 ax.tick_params(axis='x',labelrotation=90)
+ax.bar_label(bar_1,label_type='edge')
 st.pyplot(fig)
 
 st.text("Categories by time")
@@ -133,8 +140,9 @@ st.dataframe(pivot_df.T)
 category = st.selectbox('Category',CATEGORIES)
 
 fig,ax = plt.subplots(1)
-ax.bar(x=range(len(pivot_df)),height=pivot_df[category],tick_label=pivot_df.index.astype(str))
+bar_1 = ax.bar(x=range(len(pivot_df)),height=pivot_df[category],tick_label=pivot_df.index.astype(str))
 ax.tick_params(axis='x',labelrotation=90)
+ax.bar_label(bar_1,label_type='edge')
 st.pyplot(fig)
 
 
