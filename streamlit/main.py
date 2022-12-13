@@ -114,6 +114,8 @@ total.name = 'Category'
 total = total.to_frame()
 
 
+#st.dataframe(total.style.format(formatter="${0:,.2f}"))
+
 
 st.text("Total")
 fig,ax = plt.subplots(1)
