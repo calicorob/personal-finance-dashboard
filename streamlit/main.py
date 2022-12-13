@@ -111,6 +111,10 @@ total = pivot_df.sum()
 total.name = 'Category'
 
 st.text("Total")
+fig,ax = plt.subplots(1)
+ax.bar(x = range(len(total)),height = total.values,tick_label = total.index.astype(str))
+ax.tick_params(axis='x',labelrotation=90)
+st.pyplot(fig)
 st.dataframe(total)
 
 
