@@ -19,22 +19,26 @@ import csv
 # dag parameters
 service_key_path = Path(os.getcwd())/'keys'/'service_key.json'
 csv_folder = Path('./csvs')
-spreadsheet_id = '1OesDLGjHMpJ9BlGUVTswZhMySom93zV1J178Mbas_I0'
+spreadsheet_id = '1c05b9KEKmIqlO3EjtOg0zBCkcUY4VTJuuRbuVyufv20'
 range_start = 'A1'
 range_end = 'F'
 
 sheet_names = [
 
-     'Transportation'
-    ,'Daily Living'
-    ,'Entertainment'
-    ,'Subscriptions'
-    ,'Home Expenses'
-    ,'Health'
+     'Other Entertainment'
+    ,'Groceries'
+    ,'Restaurants'
+    ,'Curling'
     ,'Savings'
+    ,'Vacation and Travel'
+    ,'Health'
+    ,'Gifts and Charity'
     ,'Misc'
-    ,'Obligations'
-    ,'Charity And Gifts'
+    ,'Earnings'
+    ,'Fitness'
+    ,'Subscriptions'
+    ,'Daily Living'
+    ,'Housing'
 ]
 
 def dump_csvs()->None:
