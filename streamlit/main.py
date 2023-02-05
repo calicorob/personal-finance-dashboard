@@ -28,7 +28,7 @@ freq = freq_dict.get(freq_option)
 
 SHEET_TYPES = {
      'date': 'datetime64[ns]'
-    ,'category':str
+    ,'sub_category':str
     ,'type':str
     ,'amount':np.dtype('float32')
     ,'description':str
@@ -40,16 +40,20 @@ SHEET_COLUMNS = list(SHEET_TYPES.keys())
 
 CATEGORIES = [
 
-     'Transportation'
-    ,'Daily Living'
-    ,'Entertainment'
-    ,'Subscriptions'
-    ,'Home Expenses'
-    ,'Health'
+     'Other Entertainment'
+    ,'Groceries'
+    ,'Restaurants'
+    ,'Curling'
     ,'Savings'
+    ,'Vacation and Travel'
+    ,'Health'
+    ,'Gifts and Charity'
     ,'Misc'
-    ,'Obligations'
-    ,'Charity And Gifts'
+    ,'Earnings'
+    ,'Fitness'
+    ,'Subscriptions'
+    ,'Daily Living'
+    ,'Housing'
 ]
 
 def transform_g_sheet_array(array:List[List[Any]])->pd.DataFrame:
@@ -74,9 +78,12 @@ def make_dataframe()->pd.DataFrame:
         dfs = list()
         for file in files:
             if file.endswith('.csv'):
-                with open(csv_folder_path/file,mode='r') as f:
+                file_path = csv_folder_path/file
+                with open(file_path,mode='r') as f:
                     reader = csv.reader(f)
-                    dfs.append(transform_g_sheet_array(array=[row for row in reader]))
+                    df = transform_g_sheet_array(array=[row for row in reader])
+                    df['category'] = Path(file_path).stem
+                    dfs.append(df)
 
     dfs = pd.concat(dfs,axis=0,sort=True).reset_index(drop=True)
     return dfs
